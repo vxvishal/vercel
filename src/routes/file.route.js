@@ -5,7 +5,7 @@ import multer from "multer";
 import { v4 } from "uuid";
 import File from "../models/files.model.js";
 import Comment from "../models/comments.model.js";
-import pdf2img from 'pdf-img-convert';
+// import pdf2img from 'pdf-img-convert';
 
 const router = express.Router();
 const upload = multer();
@@ -27,16 +27,16 @@ router.post("/upload", auth, upload.single('file'), async (req, res) => {
         const upload = await uploadBytesResumable(storageRef, file.buffer, metadata);
         const url = await getDownloadURL(upload.ref);
 
-        const pdfArray = await pdf2img.convert(url);
+        // const pdfArray = await pdf2img.convert(url);
 
         let thumbnailURL = "";
 
-        for (let i = 0; i < 1; i++) {
-            const imageBuffer = pdfArray[i];
-            const imageRef = ref(storage, `thumbnails/${fileID}`);
-            const imageUpload = await uploadBytesResumable(imageRef, imageBuffer, { contentType: 'image/png' });
-            thumbnailURL = await getDownloadURL(imageUpload.ref);
-        }
+        // for (let i = 0; i < 1; i++) {
+        //     const imageBuffer = pdfArray[i];
+        //     const imageRef = ref(storage, `thumbnails/${fileID}`);
+        //     const imageUpload = await uploadBytesResumable(imageRef, imageBuffer, { contentType: 'image/png' });
+        //     thumbnailURL = await getDownloadURL(imageUpload.ref);
+        // }
 
         const newFile = new File({
             fileID,
@@ -45,7 +45,7 @@ router.post("/upload", auth, upload.single('file'), async (req, res) => {
             uploadedBy: req.user.id,
             thumbnailURL,
             uploadedOn: new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" }),
-            numberOfPages: pdfArray.length
+            numberOfPages: 1
         });
 
         await newFile.save();
