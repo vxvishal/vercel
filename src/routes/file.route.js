@@ -29,7 +29,7 @@ router.post("/upload", auth, upload.single('file'), async (req, res) => {
 
         // const pdfArray = await pdf2img.convert(url);
 
-        let thumbnailURL = "";
+        let thumbnailURL = "/path/to/png";
 
         // for (let i = 0; i < 1; i++) {
         //     const imageBuffer = pdfArray[i];
