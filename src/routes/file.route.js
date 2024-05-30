@@ -53,7 +53,7 @@ router.post("/upload", auth, upload.single('file'), async (req, res) => {
         res.status(200).send(newFile);
     } catch (error) {
         console.error(error.message);
-        res.status(500).send("Server Error");
+        res.status(500).send(error.message);
     }
 });
 
@@ -84,7 +84,7 @@ router.delete("/delete/:id", auth, async (req, res) => {
         res.status(200).send("File deleted successfully");
     } catch (error) {
         console.error(error.message);
-        res.status(500).send("Server Error");
+        res.status(500).send(error.message);
     }
 });
 
