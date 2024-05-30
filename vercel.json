@@ -2,26 +2,14 @@
     "version": 2,
     "builds": [
         {
-            "src": "index.js",
+            "src": "./index.js",
             "use": "@vercel/node"
         }
     ],
     "routes": [
         {
-            "src": "/api/user/(.*)",
-            "dest": "/src/routes/user.route.js"
-        },
-        {
-            "src": "/api/file/(.*)",
-            "dest": "/src/routes/file.route.js"
-        },
-        {
-            "src": "/api/comment/(.*)",
-            "dest": "/src/routes/comments.route.js"
-        },
-        {
             "src": "/(.*)",
             "dest": "/index.js"
         }
-    ],
+    ]
 }
