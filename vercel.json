@@ -1,51 +1,31 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "./index.js",
-      "use": "@vercel/node"
+    "version": 2,
+    "builds": [
+        {
+            "src": "index.js",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/api/user/(.*)",
+            "dest": "/src/routes/user.route.js"
+        },
+        {
+            "src": "/api/file/(.*)",
+            "dest": "/src/routes/file.route.js"
+        },
+        {
+            "src": "/api/comment/(.*)",
+            "dest": "/src/routes/comments.route.js"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/index.js"
+        }
+    ],
+    "env": {
+        "MONGO_URI": "@mongo_uri",
+        "JWT_SECRET": "@jwt_secret"
     }
-  ],
-  "routes": [
-    {
-      "src": "/api/user/signup",
-      "dest": "./src/routes/user.route.js"
-    },
-    {
-      "src": "/api/user/login",
-      "dest": "./src/routes/user.route.js"
-    },
-    {
-      "src": "/api/user",
-      "dest": "./src/routes/user.route.js"
-    },
-    {
-      "src": "/api/file/upload",
-      "dest": "./src/routes/file.route.js"
-    },
-    {
-      "src": "/api/file/delete/:id",
-      "dest": "./src/routes/file.route.js"
-    },
-    {
-      "src": "/api/file/allFiles",
-      "dest": "./src/routes/file.route.js"
-    },
-    {
-      "src": "/api/file/:id",
-      "dest": "./src/routes/file.route.js"
-    },
-    {
-      "src": "/api/comment/add",
-      "dest": "./src/routes/comments.route.js"
-    },
-    {
-      "src": "/api/comment/file/:fileID",
-      "dest": "./src/routes/comments.route.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "./index.js"
-    }
-  ]
 }
